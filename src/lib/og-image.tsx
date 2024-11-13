@@ -33,7 +33,7 @@ export async function generateOGImage(title: string, description: string, existi
             backgroundPosition: "center",
             objectFit: 'cover',
             backgroundColor: "transparent",
-            borderRadius: "50%",
+            borderRadius: "16px",
           }}
         />
         <div style={{
