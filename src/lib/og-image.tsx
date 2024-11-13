@@ -15,7 +15,12 @@ export async function generateOGImage(title: string, description: string, existi
       backgroundImage: 'url("https://i.imgur.com/L5DN878.jpeg")',
       border: '5px solid black'
     }}>
-      <p style={{ fontSize: 24, color: 'white' }}>Test</p>
+      <p style={{
+        fontSize: 24,
+        color: 'white',
+        padding: 0,
+        margin: 0,
+      }}>Test</p>
       <div style={{ display: 'flex', flexDirection: 'row', gap: 36 }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -39,12 +44,16 @@ export async function generateOGImage(title: string, description: string, existi
             fontSize: 32,
             fontWeight: 'bold',
             color: '#ffffff',
+            padding: 0,
+            margin: 0,
           }}>
             {title}
           </h1>
           <p style={{
             fontSize: 16,
-            color: '#ffffff'
+            color: '#ffffff',
+            padding: 0,
+            margin: 0,
           }}>
             {description}
           </p>
