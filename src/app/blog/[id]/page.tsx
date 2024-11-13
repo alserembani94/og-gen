@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { BlogJsonLd } from '@/components/BlogJsonLd';
 
 type Props = {
   params: Promise<{
@@ -61,35 +62,40 @@ export default async function BlogPostPage({ params }: Props) {
     notFound();
   }
 
-  return (
-    <main className="max-w-4xl mx-auto p-6">
-      <Link
-        href="/blog"
-        className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 mb-8"
-      >
-        <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to all posts
-      </Link>
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
-      <article className="prose prose-lg max-w-none">
-        {post.ogImageUrl && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={post.ogImageUrl}
-            alt={post.title}
-            className="w-full h-[300px] object-cover rounded-lg mb-8"
-          />
-        )}
-        <h1 className="mb-4">{post.title}</h1>
-        <time className="text-sm text-gray-500 mb-8 block">
-          {new Date(post.createdAt).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </time>
-        <p className="text-gray-700 whitespace-pre-line">{post.description}</p>
-      </article>
-    </main>
+  return (
+    <>
+    <BlogJsonLd post={post} baseUrl={baseUrl} />
+      <main className="max-w-4xl mx-auto p-6">
+        <Link
+          href="/blog"
+          className="inline-flex items-center text-sm text-gray-500 hover:text-gray-700 mb-8"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to all posts
+        </Link>
+
+        <article className="prose prose-lg max-w-none">
+          {post.ogImageUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={post.ogImageUrl}
+              alt={post.title}
+              className="w-full h-[300px] object-cover rounded-lg mb-8"
+            />
+          )}
+          <h1 className="mb-4">{post.title}</h1>
+          <time className="text-sm text-gray-500 mb-8 block">
+            {new Date(post.createdAt).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <p className="text-gray-700 whitespace-pre-line">{post.description}</p>
+        </article>
+      </main>
+    </>
   );
 }

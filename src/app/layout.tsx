@@ -6,11 +6,38 @@ import Link from 'next/link';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
   title: {
-    template: '%s | Your Blog Name',
-    default: 'Your Blog Name',
+    template: '%s | OG Generation Experiment',
+    default: 'OG Generation Experiment',
   },
-  description: 'A simple and elegant blog',
+  description: 'Your blog description here - make it compelling for search results',
+  authors: [{ name: 'Whadayanow' }],
+  creator: 'Whadayanow',
+  publisher: 'OG Generation Experiment',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'OG Generation Experiment',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@alserembani',
+    site: '@alserembani',
+  },
+  verification: {
+    // Add your verification tokens here
+    google: 'your-google-verification-token',
+    // other verification tokens as needed
+  },
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({
