@@ -6,13 +6,13 @@ import { revalidatePath } from 'next/cache';
 
 export async function DELETE(
   request: Request,
-  // { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const params: { id: string } = await request.json();
+    const id = (await params).id;
     // Get the post first to get the OG image key
     const post = await prisma.blogPost.findUnique({
-      where: { id: params.id },
+      where: { id },
       select: { ogImageKey: true }
     });
 
@@ -37,7 +37,7 @@ export async function DELETE(
 
     // Delete the post
     await prisma.blogPost.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     revalidatePath('/blog');
