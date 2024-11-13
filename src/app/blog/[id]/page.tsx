@@ -5,15 +5,16 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 // Generate metadata for each blog post
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const id = (await params).id;
   const post = await prisma.blogPost.findUnique({
-    where: { id: params.id },
+    where: { id },
   });
 
   if (!post) {
