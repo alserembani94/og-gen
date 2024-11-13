@@ -31,7 +31,7 @@ export async function generateOGImage(title: string, description: string, existi
             height: '120px',
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
-            objectFit: 'contain',
+            objectFit: 'cover',
             backgroundColor: "transparent",
             borderRadius: "50%",
           }}
