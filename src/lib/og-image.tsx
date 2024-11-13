@@ -39,6 +39,7 @@ export async function generateOGImage(title: string, description: string, existi
         <div style={{
           display: 'flex',
           flexDirection: 'column',
+          maxWidth: 300
         }}>
           <h1 style={{
             fontSize: 32,
