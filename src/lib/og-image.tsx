@@ -13,8 +13,6 @@ export async function generateOGImage(title: string, description: string, existi
       justifyContent: 'center',
       flexDirection: 'column',
       backgroundImage: 'url("https://i.imgur.com/L5DN878.jpeg")',
-      padding: 40,
-      lineHeight: 0,
     }}>
       <p style={{ fontSize: 24, color: 'white' }}>Test</p>
       <div style={{ display: 'flex', flexDirection: 'row', gap: 36 }}>
