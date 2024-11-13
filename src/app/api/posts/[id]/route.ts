@@ -5,9 +5,10 @@ import { DeleteObjectCommand } from '@aws-sdk/client-s3';
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  // { params }: { params: { id: string } }
 ) {
   try {
+    const params: { id: string } = await request.json();
     // Get the post first to get the OG image key
     const post = await prisma.blogPost.findUnique({
       where: { id: params.id },
