@@ -61,7 +61,6 @@ export async function generateOGImage(title: string, description: string, existi
       </div>
     </div>,
     {
-      debug: true,
       width: 600,
       height: 400,
       fonts: [
