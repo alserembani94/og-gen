@@ -10,6 +10,17 @@ type Props = {
   }>;
 };
 
+// Generate static params for all blog posts
+export async function generateStaticParams() {
+  const posts = await prisma.blogPost.findMany({
+    select: { id: true },
+  });
+
+  return posts.map((post) => ({
+    id: post.id,
+  }));
+}
+
 // Generate metadata for each blog post
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = (await params).id;
@@ -64,7 +75,7 @@ export default async function BlogPostPage({ params }: Props) {
         {post.ogImageUrl && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={'https://' + post.ogImageUrl}
+            src={post.ogImageUrl}
             alt={post.title}
             className="w-full h-[300px] object-cover rounded-lg mb-8"
           />

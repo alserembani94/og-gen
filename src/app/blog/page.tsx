@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Set revalidation time
+export const revalidate = 3600; // Revalidate every hour
+
 export default async function BlogPage() {
   const posts = await prisma.blogPost.findMany({
     orderBy: { createdAt: 'desc' },
@@ -39,7 +42,7 @@ export default async function BlogPage() {
                 <div className="relative h-[200px] w-full">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={'https://' + post.ogImageUrl}
+                    src={post.ogImageUrl}
                     alt={post.title}
                     className="object-cover w-full h-full"
                   />

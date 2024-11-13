@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { r2Client } from '@/lib/r2';
 import { DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { revalidatePath } from 'next/cache';
 
 export async function DELETE(
   request: Request,
@@ -38,6 +39,8 @@ export async function DELETE(
     await prisma.blogPost.delete({
       where: { id: params.id },
     });
+
+    revalidatePath('/blog');
 
     return NextResponse.json({ success: true });
   } catch (error) {

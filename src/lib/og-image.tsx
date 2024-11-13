@@ -72,7 +72,7 @@ export async function generateOGImage(title: string, description: string, existi
   );
 
   return {
-    url: `${process.env.CLOUDFLARE_R2_PUBLIC_URL}/${key}`,
+    url: `https://${process.env.CLOUDFLARE_R2_PUBLIC_URL}/${key}`,
     key: key
   };
 }
